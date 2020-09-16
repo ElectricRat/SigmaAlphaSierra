@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 //firebase core import
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'FirebaseFunctions.dart';
+
 void main() {
   //hotfix for a bug
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
           //"Container()" is just the pagebuilding equivalent of "null" AFAIK. Replace at will.
           print("error");
           print(snapshot.error);
-          return Container(); //"error" window?
+          return Container(); //todo: "error" window?
         }
 
         // Once complete, show your application
@@ -55,7 +58,7 @@ class MyApp extends StatelessWidget {
 
         // Otherwise, show something whilst waiting for initialization to complete
         print("loading");
-        return Container(); //"loading" window?
+        return Container(); //todo: "loading" window?
       },
     );
   }
@@ -134,6 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+        AddUser("John Bean", "Chiropractor"), //PLACEHOLDER: button that when pressed adds a user to database
           ],
         ),
       ),
