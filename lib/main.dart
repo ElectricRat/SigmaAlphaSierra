@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // page import
-import './Page/profiles.dart';
+import 'ui/pages/profiles.dart';
 
 //firebase core import
 import 'package:firebase_core/firebase_core.dart';
