@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// components
+import '../components/appbar.dart';
+
 class ProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,27 +16,7 @@ class ProjectPage extends StatelessWidget {
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Text('Menu'),
-            ),
-            ListTile(
-              leading: Icon(Icons.group),
-              title: Text('People'),
-            ),
-            ListTile(
-              leading: Icon(Icons.filter_none),
-              title: Text('Projects'),
-              onTap: () => {
-                Navigator.pushNamed(context, '/projects')
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
-            ),
-          ],
-        ),
+        child: DrawerList(),
       ),
       body: Container(
         child: FlatButton(
