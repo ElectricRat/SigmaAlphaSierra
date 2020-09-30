@@ -9,8 +9,31 @@ class ProfilePage extends StatelessWidget {
         title: Text('Profiles'),
         backgroundColor: Colors.green,
         actions: [
-          IconButton(icon: Icon(Icons.dehaze), onPressed: null),
+          IconButton(icon: Icon(Icons.person), onPressed: null),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Text('Menu'),
+            ),
+            ListTile(
+              leading: Icon(Icons.group),
+              title: Text('People'),
+            ),
+            ListTile(
+              leading: Icon(Icons.filter_none),
+              title: Text('Projects'),
+              onTap: () => {
+                Navigator.pushNamed(context, '/projects')
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Messages'),
+            ),
+          ],
+        ),
       ),
       body: ListView(
         children: [
