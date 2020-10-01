@@ -73,6 +73,7 @@ class MyApp extends StatelessWidget {
               // closer together (more dense) than on mobile platforms.
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
+            initialRoute: '/profiles',
             routes: {
               '/profiles': (context) => ProfilePage(),
               '/projects': (context) => ProjectPage(),
