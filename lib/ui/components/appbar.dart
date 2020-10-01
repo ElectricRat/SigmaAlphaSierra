@@ -28,6 +28,9 @@ class DrawerList extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.portrait ),
           title: Text('Home'),
+          onTap: () => {
+            Navigator.pushNamed(context, '/home')
+          },
         ),
         ListTile(
           leading: Icon(Icons.add),

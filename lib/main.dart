@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // page import
 import 'ui/pages/profiles.dart';
 import 'ui/pages/projects.dart';
+import 'ui/pages/home.dart';
 
 //firebase core import
 import 'package:firebase_core/firebase_core.dart';
@@ -73,8 +74,8 @@ class MyApp extends StatelessWidget {
               // closer together (more dense) than on mobile platforms.
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            initialRoute: '/profiles',
             routes: {
+              '/home': (context) => HomePage(),
               '/profiles': (context) => ProfilePage(),
               '/projects': (context) => ProjectPage(),
             },
