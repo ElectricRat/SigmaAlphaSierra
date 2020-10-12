@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sigmaalphasierra/ui/pages/addproject.dart';
 // page import
 import 'ui/pages/profiles.dart';
 import 'ui/pages/projects.dart';
@@ -74,10 +75,12 @@ class MyApp extends StatelessWidget {
               // closer together (more dense) than on mobile platforms.
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
+            initialRoute: '/addproject',
             routes: {
               '/home': (context) => HomePage(),
               '/profiles': (context) => ProfilePage(),
               '/projects': (context) => ProjectPage(),
+              '/addproject': (context) => AddProjectPage(),
             },
           );
         }
