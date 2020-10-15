@@ -17,9 +17,6 @@ class _AddProjectPage extends State<AddProjectPage> {
   List<String> _interestsList;
   List<String> _participantsList;
 
-
-
-
   @override
   @mustCallSuper
   void initState() {

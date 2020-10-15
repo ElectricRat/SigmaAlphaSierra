@@ -35,6 +35,9 @@ class DrawerList extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.add),
           title: Text('Add Project'),
+          onTap: () => {
+            Navigator.pushNamed(context, '/addproject')
+          },
         ),
         Divider(),
         ListTile(

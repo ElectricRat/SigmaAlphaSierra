@@ -4,7 +4,25 @@ import 'package:flutter/material.dart';
 // components
 import '../components/appbar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<String> _interestsList;
+  List<String> _projectsList;
+
+  @override
+  @mustCallSuper
+  void initState() {
+    super.initState();
+    setState(() {
+      _interestsList = [];
+      _projectsList = [];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,13 +37,13 @@ class HomePage extends StatelessWidget {
         child: DrawerList(),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           children: <Widget>[
             ListTile(
               title: Text('Firstname',
-              style: TextStyle(
-                fontSize: 22.0,
-              ),
+                style: TextStyle(
+                  fontSize: 22.0,
+                ),
               ),
             ),
             Container(
@@ -60,20 +78,134 @@ class HomePage extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              height: 500.0,
+              height: 200,
               child: Expanded(
                 child: TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
                     style: TextStyle(
-                        height: 35.0,
+                      height: 10.0,
                     )
                 ),
+              ),
+            ),
+            ListTile(
+              title: Text('Title',
+                style: TextStyle(
+                  fontSize: 22.0,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Picture URL',
+                style: TextStyle(
+                  fontSize: 22.0,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Interests',
+                style: TextStyle(
+                  fontSize: 22.0,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                onFieldSubmitted: (value) => {
+                  setState(() {_interestsList.add(value);})
+                },
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                children: _populateTags(_interestsList),
+              ),
+            ),
+            ListTile(
+              title: Text('Projects',
+                style: TextStyle(
+                  fontSize: 22.0,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                onFieldSubmitted: (value) => {
+                  setState(() {_projectsList.add(value);})
+                },
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                children: _populateTags(_projectsList),
+              ),
+            ),
+            RaisedButton(
+              onPressed: () {},
+              color: Colors.green,
+              child: const Text(
+                'Submit Changes',
+                style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
           ]
       ),
     );
+  }
+
+  // add chips of interests
+  List<Widget> _populateTags(List<String> tags) {
+    List<Widget> _interestLists = List<Widget>();
+
+    if (tags.length < 1) {
+      return [Text('Empty')];
+    }
+
+    tags.forEach((element) {
+      _interestLists.insert(_interestLists.length,
+        Container(
+          child: Chip(
+            label: Text(
+              element,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            backgroundColor: Colors.green,
+          ),
+          padding: EdgeInsets.all(5.0),
+        ),
+      );
+    });
+
+    return _interestLists;
   }
 }
