@@ -15,7 +15,8 @@ class AddProjectPage extends StatefulWidget {
 
 class _AddProjectPage extends State<AddProjectPage> {
   List<String> _interestsList;
-  List<Widget> _interestsWidget;
+  List<String> _participantsList;
+
 
 
 
@@ -23,12 +24,14 @@ class _AddProjectPage extends State<AddProjectPage> {
   @mustCallSuper
   void initState() {
     super.initState();
-    _interestsList = [];
+    setState(() {
+      _interestsList = [];
+      _participantsList = [];
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    _interestsWidget = _populateTags(_interestsList);
 
     return Scaffold(
       appBar: AppBar(
@@ -118,14 +121,46 @@ class _AddProjectPage extends State<AddProjectPage> {
                   border: OutlineInputBorder(),
                 ),
                 onFieldSubmitted: (value) => {
-                  setState(() { _myState = newValue; })
+                  setState(() {_interestsList.add(value);})
                 },
               ),
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
               child: Wrap(
-                children: _interestsWidget,
+                children: _populateTags(_interestsList),
+              ),
+            ),
+            ListTile(
+              title: Text('Participant',
+                style: TextStyle(
+                  fontSize: 22.0,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                onFieldSubmitted: (value) => {
+                  setState(() {_participantsList.add(value);})
+                },
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                children: _populateTags(_participantsList),
+              ),
+            ),
+            RaisedButton(
+              onPressed: () {},
+              color: Colors.green,
+              child: const Text(
+                  'Submit',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
           ]
