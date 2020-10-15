@@ -10,16 +10,53 @@ class Tags extends StatefulWidget {
 }
 
 class _Tags extends State<Tags> {
-  @override
-  Widget build(BuildContext context) {
-    return Text("test");
-  }
-}
+  List<String> _tagList;
+  List<Widget> _tagWidgets;
 
-/// Item Class
-class Interest extends StatelessWidget {
+  @override
+  @mustCallSuper
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Text("Item");
+    return Expanded(child: Column(
+      children: [
+        Row(
+          children: [
+            TextField(
+
+            ),
+          ],
+        ),
+        Row(
+
+        ),
+      ],
+    ));
+  }
+
+  // add chips of interests
+  List<Widget> _populateTags(List<String> interests) {
+    List<Widget> _interestLists = List<Widget>();
+    interests.forEach((element) {
+      _interestLists.insert(_interestLists.length,
+        Container(
+          child: Chip(
+            label: Text(
+              element,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            backgroundColor: Colors.green,
+          ),
+          padding: EdgeInsets.all(5.0),
+        ),
+      );
+    });
+
+    return _interestLists;
   }
 }
