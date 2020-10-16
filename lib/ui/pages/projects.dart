@@ -52,12 +52,20 @@ class _ProjectPageState extends State<ProjectPage> {
   }''';
   }
 
-  List<Widget> _nullGuard() {
-    if(_name == null){
-      return [Text("No username")];
+  Widget _nullGuard() {
+    if(_name != null && _name != ''){
+      return
+          ProjectItem(
+            name: _name,
+            imageLink: 'assets/no-image.png',
+            role: 'professor',
+            description: _description,
+            interests: _interestsList,
+            participants: _participantsList,
+          );
     }
     else{
-      return [Text(toJson())];
+      return Text('');
     }
   }
 
@@ -83,24 +91,25 @@ class _ProjectPageState extends State<ProjectPage> {
               imageLink: 'assets/hacc19_header2.jpg',
               role: 'professor',
               description: 'Creating oppurtunity for the community through competitions',
-              interests: ['Hackathon', 'Open-source'],
+              interests: ['Algorithms'],
               participants: ['glau@hawaii.edu', 'cnaga@hawaii.edu'],
             ),
+            _nullGuard(),
             ProjectItem(
               name: 'ACM at UH Manoa',
               imageLink: 'assets/acm.png',
               role: 'professor',
               description: 'Student-led club aiming to provide students with applied experience',
-              interests: ['Career development', 'Private sector'],
-              participants: ['Chad Radington'],
+              interests: ['ACM', 'Data Science'],
+              participants: ['cnaga@hawaii.edu'],
             ),
             ProjectItem(
               name: 'Cybersecurity Project',
               imageLink: 'assets/greyhats.png',
               role: 'professor',
               description: 'Providing organizations with cybersecurity consultation',
-              interests: ['Cybersecurity', 'Cryptography', 'IT'],
-              participants: ['Chad Radington'],
+              interests: ['Cybersecurity', 'Government'],
+              participants: ['radington@hawaii.edu'],
             ),
           ],
         ),

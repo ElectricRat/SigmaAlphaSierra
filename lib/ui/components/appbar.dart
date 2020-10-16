@@ -57,6 +57,9 @@ class DrawerList extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.category),
           title: Text('Interests'),
+          onTap: () => {
+            Navigator.pushNamed(context, '/interests')
+          },
         ),
         ListTile(
           leading: Icon(Icons.search),
