@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tagging/flutter_tagging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // components
 import '../components/appbar.dart';
@@ -35,6 +35,15 @@ class _AddProjectPage extends State<AddProjectPage> {
     });
   }
 
+  List<String> toArray() {
+    List<String> data = [];
+    data.add(_name);
+    data.add(_URL);
+    data.add(_homepage);
+    data.add(_description);
+    return data;
+  }
+
   /// Converts the class to json string.
   String toJson() {
     String interests = _interestsList.join(', ');
@@ -50,9 +59,29 @@ class _AddProjectPage extends State<AddProjectPage> {
   }''';
   }
 
+  //Incrementing counter after click
+  _writeProject() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList("profile1", toArray());
+    prefs.setStringList("profile1_interests", _interestsList);
+    prefs.setStringList("profile1_participants", _participantsList);
+    _setUploadTrue();
+  }
+
+  _setUploadFalse () async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("ProjectUpload", false);
+  }
+
+  _setUploadTrue () async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("ProjectUpload", true);
+  }
+
   @override
   Widget build(BuildContext context) {
-    debugPrint(this.toJson());
+    _setUploadFalse();
+    // debugPrint(this.toJson());
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Project'),
@@ -180,7 +209,7 @@ class _AddProjectPage extends State<AddProjectPage> {
               ),
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: _writeProject,
               color: Colors.green,
               child: const Text(
                   'Submit',
