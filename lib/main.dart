@@ -5,6 +5,7 @@ import 'ui/pages/profiles.dart';
 import 'ui/pages/projects.dart';
 import 'ui/pages/home.dart';
 import 'ui/pages/interests.dart';
+import 'ui/pages/login.dart';
 
 //firebase core import
 import 'package:firebase_core/firebase_core.dart';
@@ -76,13 +77,14 @@ class MyApp extends StatelessWidget {
               // closer together (more dense) than on mobile platforms.
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            initialRoute: '/addproject',
+            initialRoute: '/login',
             routes: {
               '/home': (context) => HomePage(),
               '/profiles': (context) => ProfilePage(),
               '/projects': (context) => ProjectPage(),
               '/interests': (context) => InterestPage(),
               '/addproject': (context) => AddProjectPage(),
+              '/login': (context) => LoginPage(),
             },
           );
         }

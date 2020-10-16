@@ -69,6 +69,9 @@ class DrawerList extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Log out'),
+          onTap: () => {
+            Navigator.pushNamed(context, '/login')
+          },
         ),
       ],
     );
