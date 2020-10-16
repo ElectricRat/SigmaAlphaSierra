@@ -14,6 +14,10 @@ class AddProjectPage extends StatefulWidget {
 }
 
 class _AddProjectPage extends State<AddProjectPage> {
+  String _name;
+  String _URL;
+  String _homepage;
+  String _description;
   List<String> _interestsList;
   List<String> _participantsList;
 
@@ -22,14 +26,33 @@ class _AddProjectPage extends State<AddProjectPage> {
   void initState() {
     super.initState();
     setState(() {
+      _name = '';
+      _URL = '';
+      _homepage = '';
+      _description = '';
       _interestsList = [];
       _participantsList = [];
     });
   }
 
+  /// Converts the class to json string.
+  String toJson() {
+    String interests = _interestsList.join(', ');
+    String participants = _participantsList.join(', ');
+
+    return '''  {
+    "name": $_name,\n
+    "URL": $_URL,\n
+    "homepage": $_homepage,\n
+    "description": $_description,\n
+    "interestsList": [$interests],\n
+    "participantsList": [$participants],\n
+  }''';
+  }
+
   @override
   Widget build(BuildContext context) {
-
+    debugPrint(this.toJson());
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Project'),
@@ -57,6 +80,7 @@ class _AddProjectPage extends State<AddProjectPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+                onChanged: (text) => setState(() {_name = text;}),
               ),
             ),
             ListTile(
@@ -72,6 +96,7 @@ class _AddProjectPage extends State<AddProjectPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+                onChanged: (text) => setState(() {_URL = text;}),
               ),
             ),
             ListTile(
@@ -87,6 +112,7 @@ class _AddProjectPage extends State<AddProjectPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+                onChanged: (text) => setState(() {_homepage = text;}),
               ),
             ),
             ListTile(
@@ -102,6 +128,7 @@ class _AddProjectPage extends State<AddProjectPage> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+                onChanged: (text) => setState(() {_description = text;}),
               ),
             ),
             ListTile(
